@@ -5,7 +5,6 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
-    another: "./src/another-module.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -21,8 +20,5 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     publicPath: "/",
-  },
-  optimization: {
-    runtimeChunk: "single",
   },
 };
