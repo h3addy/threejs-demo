@@ -2,6 +2,18 @@
 
 webpack tuts + threeJS tuts
 
-Progressive Web Applications (or PWAs) are web apps that deliver an experience similar to native applications. There are many things that can contribute to that. Of these, the most significant is the ability for an app to be able to function when offline. This is achieved through the use of a web technology called Service Workers.
+# BASIC
 
-This section will focus on adding an offline experience to our app. We'll achieve this using a Google project called Workbox which provides tools that help make offline support for web apps easier to setup.
+1. renderer object (WebGLRenderer)
+2. scene object (Scene)
+3. camera object (PerspectiveCamera/OrthographicCamera)
+4. add scene object and camera object to renderer object
+
+## ------------------------------------------
+
+# ELEMENTS IN SCENE
+
+1. object geometry (BoxGeometry, PlaneGeometry, SphereGeometry,...)
+2. object material (MeshBasicMaterial, MeshStandardMateril, MeshLambertMaterial,...)
+3. add object geometry and object material to actual element object (Mesh)
+4. add actual element object to the scene
