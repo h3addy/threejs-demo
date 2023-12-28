@@ -2,12 +2,14 @@ import * as THREE from "three";
 import "./style.css";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as dat from "dat.gui";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import nebula from "./img/nebula.jpg";
 import stars from "./img/stars.jpg";
 import vShader from "./vShader";
 import fShader from "./fShader";
 
+const monkeyUrl = new URL("./assets/monkey.glb", import.meta.url);
 const gui = new dat.GUI();
 
 const renderer = new THREE.WebGLRenderer();
@@ -204,6 +206,15 @@ const rayCaster = new THREE.Raycaster();
 const sphereId = sphere.id;
 box2.name = "theBox";
 
+const assetLoader = new GLTFLoader();
+
+assetLoader.load(monkeyUrl.href, function (gltf) {
+  console.log(monkeyUrl);
+  const model = gltf.scene;
+  scene.add(model);
+  model.position.set(-12, 4, 10);
+});
+
 function animate(time) {
   box.rotation.x = time / 1000;
   box.rotation.y = time / 1000;
@@ -219,7 +230,7 @@ function animate(time) {
 
   rayCaster.setFromCamera(mousePosition, camera);
   const intersects = rayCaster.intersectObjects(scene.children);
-  console.log(intersects);
+  // console.log(intersects);
 
   for (let i = 0; i < intersects.length; i++) {
     if (intersects[i].object.id === sphereId) {
@@ -240,3 +251,9 @@ function animate(time) {
   renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
